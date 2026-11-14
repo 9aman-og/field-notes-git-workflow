@@ -1,0 +1,108 @@
+Field Notes | Git command record
+
+The commands are listed where they first appear in the workflow.
+Repeated commands are listed once.
+
+01. Local repository
+
+git --version
+  Shows the Git version installed on the Mac.
+
+git init -b main
+  Starts a local repository and names its initial branch main.
+
+git config --local user.name 9aman-og
+  Sets the author name for commits in this repository.
+
+git config --local user.email 183055813+9aman-og@users.noreply.github.com
+  Uses the GitHub no-reply address for commits in this repository.
+
+git status --short
+  Shows untracked or modified files. No output means the working tree is clean.
+
+git add index.html about.html
+  Stages both pages for the first commit.
+
+git commit -m 'Add home and about pages'
+  Saves the initial version of the two pages.
+
+02. Edit, branch, and merge
+
+git diff --stat
+  Summarises the local edit before staging the home page.
+
+git add index.html
+  Stages the home-page edit. Also used to stage the draft banner later.
+
+git commit -m 'Add a first field note to the home page'
+  Records the second commit on main.
+
+git branch feature
+  Creates feature at the current commit.
+
+git switch feature
+  Changes the active branch to feature.
+
+git branch --list
+  Lists branches and marks the active one with an asterisk.
+
+git add about.html
+  Stages the edited About page on feature.
+
+git commit -m 'Explain how to write a field note'
+  Saves the About page edit on feature.
+
+git switch main
+  Returns to main before merging.
+
+git merge --no-ff feature -m 'Merge feature branch'
+  Merges feature with a separate merge commit, making the branch visible in the graph.
+
+git log --oneline --graph --decorate --all
+  Shows the commit history and branch pointers as a graph.
+
+03. Ignore rules and undo
+
+git check-ignore -v preview.log temp/draft.txt
+  Shows the rule that matches each sample file.
+
+git add .gitignore
+  Stages the two ignore rules.
+
+git commit -m 'Ignore logs and temporary files'
+  Records the project ignore rules on main.
+
+git status --short --ignored
+  Shows ignored files and folders with the !! prefix.
+
+git commit -m 'Try a draft banner on the home page'
+  Saves a temporary change to demonstrate undoing a commit.
+
+git show --oneline HEAD -- index.html
+  Shows the home-page patch in the newest commit. Used before and after reverting.
+
+git revert --no-edit HEAD
+  Creates a commit that reverses the latest change using the default message.
+
+git diff --exit-code 'HEAD~2' HEAD -- index.html
+  Compares the home page before the banner commit with its state after the revert.
+
+04. GitHub and final checks
+
+git remote add origin https://github.com/9aman-og/field-notes-git-workflow.git
+  Connects the local repository to its GitHub URL.
+
+git remote -v
+  Shows the configured fetch and push addresses.
+
+git add git_commands.txt
+  Stages this command record for inclusion in the public repository.
+
+git commit -m 'Document the Git workflow'
+  Saves the command record on main.
+
+git push -u origin main feature
+  Sends both branches to GitHub and sets their upstream tracking branches.
+
+git ls-remote --heads origin main feature
+  Shows the commit IDs at the tips of main and feature on GitHub.
