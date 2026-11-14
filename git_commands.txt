@@ -106,3 +106,9 @@ git push -u origin main feature
 
 git ls-remote --heads origin main feature
   Shows the commit IDs at the tips of main and feature on GitHub.
+
+git add README.md git_commands.txt
+  Stages the project README and the updated command list.
+
+git commit -m 'Add a short project README'
+  Adds the README to main. The same push command publishes this commit.
